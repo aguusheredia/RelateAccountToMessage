@@ -1,0 +1,23 @@
+<apex:page lightningStylesheets="true" controller="relateAccountToMessageController">
+    <apex:pageMessages id="messages"/>
+    <apex:form >
+        <apex:pageBlock title="Relate Message To Accounts">
+            <apex:pageBlockSection collapsible="false" columns="2" >
+                <apex:pageBlock title="Account List" id="Account_List">
+                    <apex:pageBlockTable value="{! AccountList}" var="acc">
+                        <apex:column value="{! acc.account.id}"/>
+                        <apex:column value="{! acc.account.Name}"/>
+                        <apex:column value="{! acc.account.Phone}"/>
+                        <apex:column headerValue="Select">
+                            <apex:inputCheckbox id="checkBox" value="{! acc.selected}"/>
+                           </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+                <apex:pageBlock title="Message" id="Message_form">
+                    <apex:inputTextarea title="message" value="{! text}"/>
+                    <apex:commandButton action="{! relateAccountToMessage }" value="Send Message" ondblclick="showToast();"/>
+                </apex:pageBlock>
+            </apex:pageBlockSection>
+        </apex:pageBlock>   
+    </apex:form>
+</apex:page>
